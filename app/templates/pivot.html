@@ -1,0 +1,156 @@
+{% extends "layout.html"%}
+{% block head %}
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/heatmap.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script>
+var options = {
+    chart: {
+        renderTo: 'table',
+        type: 'heatmap',
+		plotBorderWidth: 1,
+		height: 500
+    },
+    xAxis: {
+    	categories: []
+    },
+    yAxis: {
+    	categories: [],
+        title: {
+        	text: null
+        }
+    },
+	colorAxis: {
+		minColor: '#FFFFFF',
+		maxColor: Highcharts.getOptions().colors[8]
+	},
+	tooltip: {
+		formatter: function () {
+			return '<b>[' + this.series.xAxis.categories[this.point.x] + ',' +
+				this.series.yAxis.categories[this.point.y] + '], ' + this.point.value  + '</b>';
+		}
+	},
+	title: {
+		
+		text: null
+	},
+	legend: {
+		align: 'right',
+		layout: 'vertical',
+		margin: 0,
+		verticalAlign: 'middle'
+	},
+    series: []
+};
+</script>
+{% endblock %}
+{% block content%}
+<div class = "container">
+	<div>
+	<h1>Pivot Table</h1>
+
+	<!-- Row/Column Values -->
+		<div>
+			<label>Row-Column Labels</label><br>
+			<select name="rowcol" id="rowcol" onchange="ajaxRequest()">
+				<option value="type-gen">Type-Generation</option>
+				<option value="gen-type">Generation-Type</option>
+			</select>
+		</div>
+
+	<!-- Filter Values -->
+		<div>
+			<label>Filter Value</label><br>
+			<select name="filter" id="filter" onchange="ajaxRequest()">
+				<option value="total">Total Stats</option>
+				<option value="hp">HP</option>
+				<option value="atk">Attack</option>
+				<option value="def">Defense</option>
+				<option value="sp-atk">Sp. Attack</option>
+				<option value="sp-def">Sp. Defense</option>
+				<option value="spd">Speed</option>
+				<option value="ht">Height (m)</option>
+				<option value="wt">Weight (kg)</option>
+				<option value="bmi">BMI</option>
+			</select>
+		</div>
+
+	<!-- Aggregation Method -->
+		<div>
+			<label>Aggregate Method</label><br>
+			<select name="aggregate" id="aggregate" onchange="ajaxRequest()">
+				<option value="count">Count</option>
+				<option value="sum">Sum</option>
+				<option value="avg">Average (mean)</option>
+				<option value="min">Minimum</option>
+				<option value="max">Maximum</option>
+				<option value="med">Median</option>
+			</select>
+		</div>
+	<!-- Hybrid Separation -->
+		<div>
+			<label>Consider Hybrid Classes Unique</label><br>
+			<select name="hybrid" id="hybrid" onchange="ajaxRequest()">
+				<option value="false">False</option>
+				<option value="true">True</option>
+			</select>
+		</div>
+            <div id="table"></div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+	function ajaxRequest(e) {
+		$('#table').html("Loading...");
+		var requestData = {
+			rowcol: $('#rowcol').val(),
+			filter: $('#filter').val(),
+			aggregate: $('#aggregate').val(),
+			hybrid: $('#hybrid').val()
+		};
+		$.ajax({
+			type: "POST",
+			url: "ajax-handler",
+			contentType: 'application/json',
+			dataType: 'json',
+			data: JSON.stringify(requestData),
+			success: function(responseData) {
+				options.xAxis.categories = responseData.xLabels;
+				options.yAxis.categories = responseData.yLabels;
+				options.series = [];
+				var series = {
+					borderWidth: 1,
+					data: [],
+					dataLabels: {
+						enabled: true,
+						color: '#000000',
+						padding: 0,
+						allowOverlap: true
+					}
+				}
+				series.data = responseData.values;
+				options.series.push(series);
+				options.chart.height =  Math.max(40 * responseData.yLabels.length, 400);
+				options.chart.width = Math.max(60 * responseData.xLabels.length, $('#table').width());
+				var chart = new Highcharts.Chart(options);
+		},
+			error: function(){
+				$('#table').html("Sorry but something went wrong!")
+			},
+		});
+	}
+	
+	function toggle(item){
+		$(item).toggle();
+	}
+
+	$(document).ready(
+		function docInit() {
+			ajaxRequest();
+	  }
+	);
+
+    </script>
+</div>
+{% endblock %}

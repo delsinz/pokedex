@@ -1,0 +1,15 @@
+/*Navbar CSS*/
+* {
+	font-family: ;
+}
+.nav-wrapper, #slide-out {
+	background-color: #d32f2f;
+}
+
+.nav-text {
+	color: white;
+	text-align: center;
+	font-size: 15px;
+}
+
+

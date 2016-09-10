@@ -1,0 +1,22 @@
+taken from KazimierzJawor on stackoverflow
+http://stackoverflow.com/questions/19851951/split-text-in-cells-at-line-breaks
+
+Sub JustDoIt()
+    'working for active sheet
+    'copy to the end of sheets collection
+    ActiveSheet.Copy after:=Sheets(Sheets.Count)
+    Dim tmpArr As Variant
+    Dim Cell As Range
+    For Each Cell In Range("AJ1", Range("AJ2").End(xlDown))
+        If InStr(1, Cell, Chr(10)) <> 0 Then
+            tmpArr = Split(Cell, Chr(10))
+
+            Cell.EntireRow.Copy
+            Cell.Offset(1, 0).Resize(UBound(tmpArr), 1). _
+                EntireRow.Insert xlShiftDown
+
+            Cell.Resize(UBound(tmpArr) + 1, 1) = Application.Transpose(tmpArr)
+        End If
+    Next
+    Application.CutCopyMode = False
+End Sub

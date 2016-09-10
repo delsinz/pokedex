@@ -1,0 +1,48 @@
+/*Pokemon list CSS*/
+.pokemon:hover {
+	background-color: #ffebee;
+}
+.modal-trigger {
+	color:black;
+}
+#id {
+	padding-left: 10px;
+	padding-top: 10px;
+
+	font-weight: 700;
+
+}
+#name {
+	padding-top: 25px;
+	font-size: 20px;
+}
+#sprite {
+	padding-left: 35px;
+
+}
+#type {
+	padding-top: 25px
+}
+
+/*Modal CSS*/
+
+#desc, #stats {
+	display: inline-block;
+}
+
+#stats {
+	margin-bottom: 40px;
+	padding-left: 50px;
+}
+
+.stat-name {
+	font-weight: 600;
+}
+.stat-value {
+	text-align:right;
+}
+
+.fixed {
+	top: 0px;
+	position: fixed;
+}

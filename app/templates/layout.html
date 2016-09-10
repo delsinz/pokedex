@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- This is the base template for all pages on the site -->
+<html>
+	<head>
+		<title>Pokédex</title>
+		<!-- Favicon -->
+		<link rel="icon" href = "/static/images/Pokeball_icon.png">
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="/static/stylesheets/layout.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<!-- Materialize CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!-- Animate CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<!-- JS -->
+		<script src="/static/js/layout.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+		 <!-- Template heads are injected below -->
+		 {% block head %}{% endblock %}
+
+	</head>
+
+	<body>
+		<div id = "navbar" class = "navbar-fixed">
+			<nav>
+			    <div class="nav-wrapper">
+			    <a href="#" class="brand-logo">{{title}}</a>
+			    	<div style = "margin-left: 20px">
+			    	<!-- Normal navbar up the top of the page -->
+			      	<ul id="nav-mobile" class="right hide-on-med-and-down">
+				        <li><a href="/pokemon"><span class="nav-text">Pokemon</span></a></li>
+				        <li><a href="/data"><span class="nav-text">Data Table</span></a></li>
+				        <li><a href="/pivot"><span class="nav-text">Pivot Table</span></a></li>
+				        <li><a href="/compare"><span class="nav-text">Compare</span></a></li>
+				        <li><a href="/observations"><span class="nav-text">Observations</span></a></li>
+			      	</ul>
+			      	<!--Slideout menu-->
+			      	<ul id="slide-out" class="side-nav" text-align = "center">
+				        <li><a href="/pokemon"><span class="nav-text">Pokemon</span></a></li>
+				        <li><a href="/data"><span class="nav-text">Data Table</span></a></li>
+				        <li><a href="/pivot"><span class="nav-text">Pivot Table</span></a></li>
+				        <li><a href="/compare"><span class="nav-text">Compare</span></a></li>
+				        <li><a href="/observations"><span class="nav-text">Observations</span></a></li>
+					</ul>
+					<!-- Burger Icon for mobile -->
+		  			<a href="#" data-activates="slide-out" class="button-collapse"><i id = "burger" class="fa fa-bars"></i></a>
+			  		</div>
+			  	</div>
+			</nav>
+		<!--navbar div  -->
+		</div>
+		<!-- Other templates are injected into the content block -->
+		
+		{% block content %}{% endblock %}
+	</body>
+</html>

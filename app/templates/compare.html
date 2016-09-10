@@ -1,0 +1,191 @@
+{% extends "layout.html"%}
+
+{% block head %}
+	<link rel="stylesheet" href="/static/stylesheets/compare.css">
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="/static/js/compare.js"></script>
+	<script src="/static/js/jquery.filterizr.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//Initialize filterizr with default options
+			$('.filtr-container').filterizr();
+		});
+	</script>
+{% endblock %}
+
+{% block content %}
+<div class = "container">
+	<div class="row">
+		<!-- start left dock -->
+		<div class="col m3">
+          <div class="card blue-grey darken-1" id="dock-left">
+            <div class="card-content white-text">
+              <span class="card-title">Drop Here!</span>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+            </div>
+          </div>
+        </div>
+		<!-- end left dock -->
+		<!-- start mid table -->
+		<div class="col m6">
+			<table class="highlight centered">
+        <thead>
+          <tr>
+              <th>Attribute</th>
+              <th id="name-left">Pokemon_0</th>
+              <th id="name-right">Pokemon_1</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>HP</td>
+            <td id="hp-left">0</td>
+            <td id="hp-right">0</td>
+          </tr>
+		  <tr>
+            <td>Attack</td>
+            <td id="atk-left">0</td>
+            <td id="atk-right">0</td>
+          </tr>
+		  <tr>
+            <td>Defense</td>
+            <td id="def-left">0</td>
+            <td id="def-right">0</td>
+          </tr>
+		  <tr>
+            <td>Sp.Attack</td>
+            <td id="spatk-left">0</td>
+            <td id="spatk-right">0</td>
+          </tr>
+		  <tr>
+            <td>Sp.Defense</td>
+            <td id="spdef-left">0</td>
+            <td id="spdef-right">0</td>
+          </tr>
+		  <tr>
+            <td>Speed</td>
+            <td id="speed-left">0</td>
+            <td id="speed-right">0</td>
+          </tr>
+		  <tr>
+            <td>Height</td>
+            <td id="ht-left">0</td>
+            <td id="ht-right">0</td>
+          </tr>
+		  <tr>
+            <td>Weight</td>
+            <td id="wt-left">0</td>
+            <td id="wt-right">0</td>
+          </tr>
+		  <tr>
+            <td>BMI</td>
+            <td id="bmi-left">0</td>
+            <td id="bmi-right">0</td>
+          </tr>
+        </tbody>
+      </table>
+		</div>
+		<!-- end mid table-->
+		<!-- start right dock -->
+		<div class="col m3">
+		  <div class="card blue-grey darken-1" id="dock-right">
+			<div class="card-content white-text">
+			  <span class="card-title">Drop Here!</span>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			  <p><br></p>
+			</div>
+		  </div>
+		</div>
+		<!-- end right dock -->
+	</div>
+	<!-- start search box -->
+	<div class="row">
+		<div class="input-field">
+			<form class="col m12">
+				<i class="material-icons prefix">search</i>
+				<input type="text" class="filtr-search" name="filtr-search" data-search>
+				<label for="icon_prefix">Search</label>
+			</form>
+		</div>
+	</div>
+	<!-- end search box -->
+	<!-- start card collection -->
+	<div class="row filtr-container">
+	{% for poke in pokemon %}
+	<div class="col m3 filtr-item" data-category="17">
+		<div class="card hoverable draggable">
+    		<div class="card-image waves-effect waves-block waves-light">
+      			<img class="activator" src = "/static/images/Sprites/{{poke["#"]}}.png">
+    		</div>
+    		<div class="card-content">
+      			<span class="card-title activator grey-text text-darken-4"><font size=2>{{ poke.Name }}</font></span>
+      			<p></p>
+    		</div>
+    		<div class="card-reveal">
+      			<span class="card-title grey-text text-darken-4 poke-name"><font size=2>{{ poke.Name }}</font></span>
+      			<p>
+					<div id = "stats">
+		  	      	<div class = "stat-text">
+		  	      		<span class = "stat-name">HP:</span>
+		  	      		<span class = "stat-value hp">{{poke.HP}}</span>
+		  	      	</div>
+		  	      	<div class = "stat-text">
+		  	      		<span class = "stat-name">Attack:</span>
+		  	      		<span class = "stat-value atk">{{poke.Attack}}</span>
+		  	      	</div>
+		  	      	<div class = "stat-text">
+		  	      		<span class = "stat-name">Defense:</span>
+		  	      		<span class = "stat-value def">{{poke.Defense}}</span>
+		  	      	</div>
+		  	      	<div class = "stat-text">
+		  	      		<span class = "stat-name">Sp.Attack:</span>
+		  	      		<span class = "stat-value spatk">{{poke["Sp. Atk"]}}</span>
+		  	      	</div>
+		  	      	<div class = "stat-text">
+		  	      		<span class = "stat-name">Sp.Defense:</span>
+		  	      		<span class = "stat-value spdef">{{poke["Sp. Def"]}}</span>
+		  	      	</div>
+		  	      	<div class = "stat-text">
+		  	      		<span class = "stat-name">Speed:</span>
+		  	      		<span class = "stat-value speed">{{poke.Speed}}</span>
+		  	      	</div>
+		  	      	<div class = "stat-text">
+		  	      		<span class = "stat-name">Height:</span>
+		  	      		<span class = "stat-value ht">{{poke.Height}}</span>
+		  	      	</div>
+		  	      	<div class = "stat-text">
+		  	      		<span class = "stat-name">Weight:</span>
+		  	      		<span class = "stat-value wt">{{poke.Weight}}</span>
+		  	      	</div>
+		  	      	<div class = "stat-text">
+		  	      		<span class = "stat-name">BMI:</span>
+		  	      		<span class = "stat-value bmi">{{poke.BMI}}</span>
+		  	      	</div>
+		  	      </div>
+				</p>
+    		</div>
+  		</div>
+	</div>
+	{% endfor %}
+	</div>
+	<!-- end cards collection -->
+</div>
+{% endblock %}

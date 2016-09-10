@@ -1,0 +1,82 @@
+{% extends "layout.html"%}
+
+{% block head %}
+	<link rel="stylesheet" href="/static/stylesheets/pokemon.css">
+	<script src="/static/js/pokemon.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class = "container">
+	{% for poke in pokemon %}
+	<!-- Quick Overview Card -->
+	<a class = "modal-trigger" href="#modal{{poke["#"]}}">
+	<div class = "pokemon row card z-depth-1 hoverable">
+		<!-- id -->
+		<div id = "id">
+			<span>{{poke["#"].zfill(3)}}</span>
+		</div>
+		<!-- Sprite -->
+		<div id = "sprite" class = "col s4">
+			<img src = "/static/images/Sprites/{{poke["#"]}}.png">
+		</div>
+		<!-- Name -->
+		<div id = "name" class = "col s4">
+			<span >{{ poke.Name }}</span>
+		</div>
+		<!-- Type -->
+		<div id = "type" class = "col s4">
+			<span class = "pull-right">{{poke.Type}}</span>
+		</div>
+	</div>
+	</a>
+
+	<!-- Profile Pop-up -->
+	<div id = "modal{{poke["#"]}}" class="modal">
+	    <div class="modal-content">
+	      <div id = "desc">
+	      	<h4>{{poke.Name}}</h4>
+	      	<img src = "/static/images/Artwork/{{poke["#"]}}.jpg">
+	      </div>
+	      <div id = "stats">
+	      	<div class = "stat-text">
+	      		<span class = "stat-name">HP:</span>
+	      		<span class = "stat-value">{{poke.HP}}</span>
+	      	</div>
+	      	<div class = "stat-text">
+	      		<span class = "stat-name">Attack:</span>
+	      		<span class = "stat-value">{{poke.Attack}}</span>
+	      	</div>
+	      	<div class = "stat-text">
+	      		<span class = "stat-name">Defense:</span>
+	      		<span class = "stat-value">{{poke.Defense}}</span>
+	      	</div>
+	      	<div class = "stat-text">
+	      		<span class = "stat-name">Sp.Attack:</span>
+	      		<span class = "stat-value">{{poke["Sp. Atk"]}}</span>
+	      	</div>
+	      	<div class = "stat-text">
+	      		<span class = "stat-name">Sp.Defense:</span>
+	      		<span class = "stat-value">{{poke["Sp. Def"]}}</span>
+	      	</div>
+	      	<div class = "stat-text">
+	      		<span class = "stat-name">Speed:</span>
+	      		<span class = "stat-value">{{poke.Speed}}</span>
+	      	</div>
+	      	<div class = "stat-text">
+	      		<span class = "stat-name">Height:</span>
+	      		<span class = "stat-value">{{poke.Height}}</span>
+	      	</div>
+	      	<div class = "stat-text">
+	      		<span class = "stat-name">Weight:</span>
+	      		<span class = "stat-value">{{poke.Weight}}</span>
+	      	</div>
+	      	<div class = "stat-text">
+	      		<span class = "stat-name">BMI:</span>
+	      		<span class = "stat-value">{{poke.BMI}}</span>
+	      	</div>
+	      </div>
+	    </div>
+    </div>
+	{% endfor %}
+</div>
+{% endblock %}

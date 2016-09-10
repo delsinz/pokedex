@@ -1,0 +1,73 @@
+{% extends "layout.html"%}
+
+{% block head %}
+<link rel="stylesheet" href="/static/stylesheets/observations.css">
+{% endblock %}
+
+{% block content%}
+<!-- Question -->
+	<div id = "q1" class = "redbg valign-wrapper">
+		<div class = "animated fadeInUp container valign" align = "center">
+			<p class = "intro">Who is the best starter?</p>
+			<p id = "smalltext">(It's Squirtle)</p>
+		</div>
+	</div>
+<!-- Answer -->
+	<div id = "a1" class = "whitebg valign-wrapper">
+		<div class = "animated fadeInUp container valign" align = "center">
+			<div class = "row">
+			<div id = "bulbasaur" class = "card col s4">
+				<!-- Frontside of Card -->
+				<img class = "activator" src = "/static/images/Artwork/1.jpg" height = "250"/>
+				<!-- Backside of Card -->
+				<div class = "card-reveal">
+				HP: 45 <br>
+				Attack: 49 <br>
+				Defense: 49 <br>
+				Sp.Attack: 65 <br>
+				Sp.Defense: 65 <br>
+				Speed: 45 <br>
+				Height: 0.71m <br>
+				Weight: 6.9 kg <br>
+				BMI: 13.7 <br>
+				</div>
+			</div>
+			<div id = "squirtle" class = "card col s4" >
+				<!-- Frontside of Card -->
+				<img class = "activator" src = "/static/images/Artwork/7.jpg" height = "250"/>
+				<!-- Backside of Card -->
+				<div class = "card-reveal">
+				HP: 44 <br>
+				Attack: 48 <br>
+				Defense: 65 <br>
+				Sp.Attack: 50 <br>
+				Sp.Defense: 64 <br>
+				Speed: 43 <br>
+				Height: 0.51m <br>
+				Weight: 9.0 kg <br>
+				BMI: 34.6 <br>				
+				</div>
+			</div>
+			<div id = "charmander" class = "card col s4">
+				<!-- Frontside of Card -->
+				<img class = "activator" src = "/static/images/Artwork/4.jpg" height = "250"/>
+				<!-- Backside of Card -->
+				<div class = "card-reveal">
+				HP: 39 <br>
+				Attack: 52<br>
+				Defense: 43<br>
+				Sp.Attack: 60<br>
+				Sp.Defense: 50<br>
+				Speed: 65<br>
+				Height: 0.61m<br>
+				Weight: 8.5 kg<br>
+				BMI: 22.8<br>
+				</div>
+			</div>
+<!-- row div -->
+			</div>
+<!-- valign-wrapper div -->
+		</div>	
+<!-- bg div -->
+	</div>
+{% endblock %}

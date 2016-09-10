@@ -1,0 +1,34 @@
+.redbg {
+	min-height:100vh;
+    overflow: hidden;
+    height: 95%;
+    width: 100%;
+
+    position: relative;
+	background-color: #d32f2f;
+}
+.whitebg {
+	min-height:100vh;
+    overflow: hidden;
+    height: 95%;
+    width: 100%;
+
+    position: relative;
+	background-color: white;
+}
+
+.intro {
+	font-size: 45px;
+}
+.ans {
+
+}
+
+#smalltext {
+	font-size: 20px;
+}
+
+/*Starter CSS*/
+#bulbasaur,#squirtle,#charmander {
+
+}
