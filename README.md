@@ -4,8 +4,6 @@
 To run the web app:
 `python run.py` in pokemon
 
-Presentation slides:
-https://docs.google.com/presentation/d/1yJpm5QuwyMeb1x15zoF_muW_4tuTJuFDzI-VpnP2soQ/edit?usp=sharing
 
 Group members:
 Garwah Lam 760634
